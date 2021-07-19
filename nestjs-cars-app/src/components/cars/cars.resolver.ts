@@ -1,53 +1,52 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { truncate } from 'fs';
-import { Repository } from 'typeorm';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Console } from 'console';
+import { CarsService } from './cars.services';
 import { NewCarInput } from './dto/new-car.input';
-import { UpdateCarInput } from './dto/update-car.input';
 import { Car } from './entities/car';
+import { UpdateCarInput } from './dto/update-car.input';
 
-@Injectable()
-export class CarsService {
-  constructor(@InjectRepository(Car) private carRepository: Repository<Car>) {}
+@Resolver()
+export class CarsResolver {
+  constructor(private carsService: CarsService) {}
 
-  public async getAllCars(): Promise<Car[]> {
-    return await this.carRepository.find({}).catch((err) => {
-      throw new InternalServerErrorException();
+  @Query((returns) => [Car])
+  public async cars(): Promise<Car[]> {
+    return await this.carsService.getAllCars().catch((err) => {
+      throw err;
     });
   }
 
-  public async findOne(id:string){
-    
-    return await this.carRepository.findOne({id});
-    
-  }
-
-  public async deleteCar(id:string){
-    
-    await this.carRepository.delete({ id });
-    
-    return true;
-    
-  }
-
-  public async addCar(newCarData: NewCarInput): Promise<Car> {
-    const newCar = this.carRepository.create(newCarData);
-    await this.carRepository.save(newCar).catch((err) => {
-      new InternalServerErrorException();
+  @Query((returns) => Car)
+  public async findOne(@Args('id') id: string): Promise<Car> {
+    return await this.carsService.findOne(id).catch((err) => {
+      throw err;
     });
-
-    return newCar;
   }
-  
 
-  public async updateCar(id:string,updateCarData: UpdateCarInput): Promise<Car> {
-    const choosenCar =await this.carRepository.findOne({id});
-    Object.assign(choosenCar, UpdateCarInput);
-    await this.carRepository.save(choosenCar).catch((err) => {
-      new InternalServerErrorException();
+  @Mutation(() => Boolean)
+  public async deleteOne(@Args('id') id: string) {
+    return await this.carsService.deleteCar(id).catch((err) => {
+      throw err;
     });
-
-    return choosenCar;
   }
 
+  @Mutation((returns) => Car)
+  public async addNewCar(
+    @Args('newCarData') newCarData: NewCarInput,
+  ): Promise<Car> {
+    return await this.carsService.addCar(newCarData).catch((err) => {
+      throw err;
+    });
+  }
+
+
+  @Mutation((returns) => Car)
+  public async updateCar(@Args('id') id: string,
+    @Args('updateData') updateData: UpdateCarInput,
+  ): Promise<Car> {
+    return await this.carsService.updateCar(id,updateData).catch((err) => {
+      throw err;
+    });
+  }
+    
 }
