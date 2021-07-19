@@ -6,6 +6,12 @@ export class NewCarInput {
   @Field()
   name: string;
 
+  
+  @Field()
+  @Max(100, { message: "where to get so many cars!" })
+  @Min(5)
+  quntity: number;
+
   @Field((type) => Int)
   @Max(9000)
   @Min(900)

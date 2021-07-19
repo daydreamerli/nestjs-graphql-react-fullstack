@@ -14,6 +14,10 @@ export class Car {
 
   @Column()
   @Field()
+  quntity: number;
+
+  @Column()
+  @Field()
   dailyPrice: number;
 
   @Column()
