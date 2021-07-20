@@ -11,6 +11,7 @@ export class CarsService {
   constructor(@InjectRepository(Car) private carRepository: Repository<Car>) {}
 
   public async getAllCars(): Promise<Car[]> {
+    
     return await this.carRepository.find({}).catch((err) => {
       throw new InternalServerErrorException();
     });
@@ -22,6 +23,23 @@ export class CarsService {
     
   }
 
+  public async checkAvaliable(id:string): Promise<Boolean>{
+    
+    const thisModelCar = await this.carRepository.findOne({ id });
+    
+    if (thisModelCar.quntity < 1) {
+
+      // raise alert or send custom err message for this one
+      alert("Sorry! No availble cars for this model")
+      return false
+
+    }else{
+      return true;
+    }
+    
+  }
+  
+
   public async deleteCar(id:string){
     
     await this.carRepository.delete({ id });
@@ -30,8 +48,11 @@ export class CarsService {
     
   }
 
+
   public async addCar(newCarData: NewCarInput): Promise<Car> {
+
     const newCar = this.carRepository.create(newCarData);
+
     await this.carRepository.save(newCar).catch((err) => {
       new InternalServerErrorException();
     });
@@ -40,14 +61,19 @@ export class CarsService {
   }
   
 
-  public async updateCar(id:string,updateCarData: UpdateCarInput): Promise<Car> {
-    const choosenCar =await this.carRepository.findOne({id});
-    Object.assign(choosenCar, UpdateCarInput);
-    await this.carRepository.save(choosenCar).catch((err) => {
-      new InternalServerErrorException();
-    });
+  public async updateCarInfo(id: string, updateCarData: UpdateCarInput): Promise<Car> {
+    
+    await this.carRepository.update(id,
+      {
+        quntity: updateCarData.dailyPrice,
+        dailyPrice: updateCarData.dailyPrice,
+        monthlyPrice: updateCarData.monthlyPrice,
+        mileage:updateCarData.mileage
+      });
+    
+    const updatedCar = await this.carRepository.findOne({ id });
 
-    return choosenCar;
+    return updatedCar;
   }
 
 }
