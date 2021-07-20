@@ -23,6 +23,13 @@ export class CarsService {
     
   }
 
+  public async findByCategory(category:string) :Promise<Car[]>{
+    
+    
+    return await this.carRepository.find({category:category });
+    
+  }
+
   public async checkAvaliable(id:string): Promise<Boolean>{
     
     const thisModelCar = await this.carRepository.findOne({ id });

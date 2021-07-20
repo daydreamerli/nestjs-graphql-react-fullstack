@@ -23,6 +23,13 @@ export class CarsResolver {
     });
   }
 
+  @Query((returns) => [Car])
+  public async findByCategory(@Args('category') category: string): Promise<Car[]> {
+    return await this.carsService.findByCategory(category).catch((err) => {
+      throw err;
+    });
+  }
+
   @Query((returns) => Boolean)
   public async CheckAvailable(@Args('id') id: string) {
     return await this.carsService.checkAvaliable(id).catch((err) => {
