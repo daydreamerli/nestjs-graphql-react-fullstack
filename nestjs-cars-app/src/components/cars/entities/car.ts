@@ -14,6 +14,14 @@ export class Car {
 
   @Column()
   @Field()
+  category: string;
+
+  @Column()
+  @Field()
+  year: string;
+
+  @Column()
+  @Field()
   quntity: number;
 
   @Column()
@@ -35,6 +43,10 @@ export class Car {
   @Column()
   @Field()
   gearType: string;
+
+  @Column()
+  @Field()
+  driveTrain: string;
 
   @Column()
   @Field()
