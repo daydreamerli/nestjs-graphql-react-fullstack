@@ -46,16 +46,6 @@ export class CarsService {
     
   }
   
-
-  public async deleteCar(id:string){
-    
-    await this.carRepository.delete({ id });
-    
-    return true;
-    
-  }
-
-
   public async addCar(newCarData: NewCarInput): Promise<Car> {
 
     const newCar = this.carRepository.create(newCarData);
@@ -81,6 +71,14 @@ export class CarsService {
     const updatedCar = await this.carRepository.findOne({ id });
 
     return updatedCar;
+  }
+
+  public async deleteCar(id:string){
+    
+    await this.carRepository.delete({ id });
+    
+    return true;
+    
   }
 
 }
