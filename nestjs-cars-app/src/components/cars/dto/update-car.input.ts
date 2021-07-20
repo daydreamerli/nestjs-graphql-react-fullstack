@@ -3,8 +3,11 @@ import { Max, Min } from 'class-validator';
 
 @InputType()
 export class UpdateCarInput {
+
   @Field()
-  name: string;
+  @Max(100, { message: "we are not No#1 in NZ" })
+  @Min(5)
+  quntity: number;
 
   @Field((type) => Int)
   @Max(9000)
@@ -19,12 +22,4 @@ export class UpdateCarInput {
   @Field()
   mileage: string;
 
-  @Field()
-  gas: string;
-
-  @Field()
-  gearType: string;
-
-  @Field()
-  thumbnailUrl: string;
 }
