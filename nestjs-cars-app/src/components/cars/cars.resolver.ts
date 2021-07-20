@@ -23,6 +23,13 @@ export class CarsResolver {
     });
   }
 
+  @Query((returns) => Boolean)
+  public async CheckAvailable(@Args('id') id: string) {
+    return await this.carsService.checkAvaliable(id).catch((err) => {
+      throw err;
+    });
+  }
+
   @Mutation(() => Boolean)
   public async deleteOne(@Args('id') id: string) {
     return await this.carsService.deleteCar(id).catch((err) => {
@@ -44,7 +51,7 @@ export class CarsResolver {
   public async updateCar(@Args('id') id: string,
     @Args('updateData') updateData: UpdateCarInput,
   ): Promise<Car> {
-    return await this.carsService.updateCar(id,updateData).catch((err) => {
+    return await this.carsService.updateCarInfo(id,updateData).catch((err) => {
       throw err;
     });
   }
