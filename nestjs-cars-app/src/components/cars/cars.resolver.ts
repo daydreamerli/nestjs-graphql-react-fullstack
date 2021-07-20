@@ -24,7 +24,7 @@ export class CarsResolver {
   }
 
   @Query((returns) => Car)
-  public async findOne(@Args('id') id: string): Promise<Car> {
+  public async findByID(@Args('id') id: string): Promise<Car> {
     return await this.carsService.findByID(id).catch((err) => {
       throw err;
     });
