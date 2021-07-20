@@ -10,7 +10,7 @@ export class CarsResolver {
   constructor(private carsService: CarsService) {}
 
   @Query((returns) => [Car])
-  public async cars(): Promise<Car[]> {
+  public async getAllCars(): Promise<Car[]> {
     return await this.carsService.getAllCars().catch((err) => {
       throw err;
     });
@@ -25,7 +25,7 @@ export class CarsResolver {
 
   @Query((returns) => Car)
   public async findOne(@Args('id') id: string): Promise<Car> {
-    return await this.carsService.findOne(id).catch((err) => {
+    return await this.carsService.findByID(id).catch((err) => {
       throw err;
     });
   }

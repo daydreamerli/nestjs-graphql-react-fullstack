@@ -17,11 +17,15 @@ export class CarsService {
     });
   }
 
-  public async findOne(id:string){
+  // public async findByPrice(price:number) :Promise<Car[]>{
     
-    return await this.carRepository.findOne({id});
+  //   while (price < 100) {
     
-  }
+  //     return await this.carRepository.find({ dailyPrice <= 100});
+  //   }else {
+      
+  //   }
+  // }
 
   public async findByCategory(category:string) :Promise<Car[]>{
     
@@ -29,6 +33,13 @@ export class CarsService {
     return await this.carRepository.find({category:category });
     
   }
+
+  public async findByID(id:string){
+    
+    return await this.carRepository.findOne({id});
+    
+  }
+  
 
   public async checkAvaliable(id:string): Promise<Boolean>{
     
