@@ -34,25 +34,29 @@ export class CarsService {
     
   }
 
-  public async findByID(id:string){
+  public async findByDrivetrain(driveTrain:string) :Promise<Car[]>{
     
-    return await this.carRepository.findOne({id});
+    return await this.carRepository.find({driveTrain:driveTrain });
     
   }
-  
 
-  public async checkAvaliable(id:string): Promise<Boolean>{
+  public async findByID(id:string){
     
-    const thisModelCar = await this.carRepository.findOne({ id });
+    return await this.carRepository.findOne({ id });
     
-    if (thisModelCar.quntity < 1) {
+  }
 
+  public async checkAvaliable(name:string): Promise<string>{
+    
+    const thisModelCar = await this.carRepository.findOne({ name });
+    let avaliableNumber = thisModelCar.quntity;
+    
+    if (avaliableNumber < 1) {
       // raise alert or send custom err message for this one
       alert("Sorry! No availble cars for this model")
-      return false
-
+      return "No availibale cars for this model";
     }else{
-      return true;
+      return "There are "+avaliableNumber+` ${name}`+" avaliable now";
     }
     
   }
