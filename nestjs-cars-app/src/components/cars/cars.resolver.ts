@@ -23,6 +23,13 @@ export class CarsResolver {
     });
   }
 
+  @Query((returns) => [Car])
+  public async findByDrivetrain(@Args('driveTrain') driveTrain: string): Promise<Car[]> {
+    return await this.carsService.findByDrivetrain(driveTrain).catch((err) => {
+      throw err;
+    });
+  }
+
   @Query((returns) => Car)
   public async findByID(@Args('id') id: string): Promise<Car> {
     return await this.carsService.findByID(id).catch((err) => {
@@ -30,10 +37,9 @@ export class CarsResolver {
     });
   }
 
-
-  @Query((returns) => Boolean)
-  public async CheckAvailable(@Args('id') id: string) {
-    return await this.carsService.checkAvaliable(id).catch((err) => {
+  @Query((returns) => String)
+  public async CheckAvailable(@Args('name') name: string) {
+    return await this.carsService.checkAvaliable(name).catch((err) => {
       throw err;
     });
   }
@@ -53,7 +59,6 @@ export class CarsResolver {
       throw err;
     });
   }
-
 
   @Mutation((returns) => Car)
   public async updateCar(@Args('id') id: string,
