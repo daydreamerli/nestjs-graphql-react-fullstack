@@ -4,11 +4,6 @@ import { Max, Min } from 'class-validator';
 @InputType()
 export class UpdateCarInput {
 
-  @Field()
-  @Max(100, { message: "we are not No#1 in NZ" })
-  @Min(5)
-  quntity: number;
-
   @Field((type) => Int)
   @Max(9000)
   @Min(900)

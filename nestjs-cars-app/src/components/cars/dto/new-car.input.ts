@@ -15,10 +15,10 @@ export class NewCarInput {
   year: string;
 
   
-  @Field()
+  @Field((type) => Int)
   @Max(100, { message: "we are not No#1 in NZ" })
   @Min(5)
-  quntity: number;
+  quantity: number;
 
   @Field((type) => Int)
   @Max(9000)

@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import { NewCarInput } from './dto/new-car.input';
 import { UpdateCarInput } from './dto/update-car.input';
 import { Car } from './entities/car';
+import { OrderQuantityInput } from './dto/order-quantity-input';
+import { Int } from '@nestjs/graphql';
 
 @Injectable()
 export class CarsService {
@@ -16,10 +18,10 @@ export class CarsService {
       throw new InternalServerErrorException();
     });
   }
-
+  // findByPriceRange   create a input enum 0-60 60 -100 100 -200
   // public async findByPrice(price:number) :Promise<Car[]>{
     
-  //   while (price < 100) {
+  //   while (price < enum.1) {
     
   //     return await this.carRepository.find({ dailyPrice <= 100});
   //   }else {
@@ -49,7 +51,7 @@ export class CarsService {
   public async checkAvaliable(name:string): Promise<string>{
     
     const thisModelCar = await this.carRepository.findOne({ name });
-    let avaliableNumber = thisModelCar.quntity;
+    let avaliableNumber = thisModelCar.quantity;
     
     if (avaliableNumber < 1) {
       // raise alert or send custom err message for this one
@@ -77,7 +79,6 @@ export class CarsService {
     
     await this.carRepository.update(id,
       {
-        quntity: updateCarData.dailyPrice,
         dailyPrice: updateCarData.dailyPrice,
         monthlyPrice: updateCarData.monthlyPrice,
         mileage:updateCarData.mileage
@@ -88,12 +89,28 @@ export class CarsService {
     return updatedCar;
   }
 
-  public async deleteCar(id:string){
+  public async deleteCar(id:string):Promise<Boolean>{
     
     await this.carRepository.delete({ id });
     
     return true;
     
   }
+
+  public async updateCarQuantity(name: string, orderQuantity: OrderQuantityInput): Promise<Car> {
+   
+
+    let choosenCar = await this.carRepository.findOne({ name });
+    console.log(choosenCar.quantity);
+
+    await this.carRepository.update(choosenCar, {
+      quantity: choosenCar.quantity-orderQuantity.orderNumber
+    })
+    
+    const updatedQuantityCar = await this.carRepository.findOne({ name });
+    
+    return updatedQuantityCar;
+  }
+
 
 }

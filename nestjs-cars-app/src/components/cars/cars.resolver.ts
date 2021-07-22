@@ -4,6 +4,7 @@ import { CarsService } from './cars.services';
 import { NewCarInput } from './dto/new-car.input';
 import { Car } from './entities/car';
 import { UpdateCarInput } from './dto/update-car.input';
+import { OrderQuantityInput } from './dto/order-quantity-input';
 
 @Resolver()
 export class CarsResolver {
@@ -65,6 +66,15 @@ export class CarsResolver {
     @Args('updateData') updateData: UpdateCarInput,
   ): Promise<Car> {
     return await this.carsService.updateCarInfo(id,updateData).catch((err) => {
+      throw err;
+    });
+  }
+
+  @Mutation((returns) => Car)
+  public async updateQuantity(@Args('name') name: string,
+  @Args('orderQuantity') orderQuantity: OrderQuantityInput,
+  ): Promise<Car> {
+    return await this.carsService.updateCarQuantity(name,orderQuantity).catch((err) => {
       throw err;
     });
   }
