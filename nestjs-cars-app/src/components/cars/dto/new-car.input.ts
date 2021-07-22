@@ -13,7 +13,6 @@ export class NewCarInput {
  
   @Field()
   year: string;
-
   
   @Field((type) => Int)
   @Max(100, { message: "we are not No#1 in NZ" })
