@@ -21,7 +21,6 @@ export class CarsService {
 
   public async findByCategory(category:string) :Promise<Car[]>{
     
-    
     return await this.carRepository.find({category:category });
     
   }
@@ -32,7 +31,7 @@ export class CarsService {
     
   }
 
-  public async findByName(name:string){
+  public async findByName(name:string) :Promise<Car>{
     
     return await this.carRepository.findOne({ name });
     
