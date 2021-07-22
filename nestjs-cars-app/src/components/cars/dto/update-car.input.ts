@@ -3,7 +3,6 @@ import { Max, Min } from 'class-validator';
 
 @InputType()
 export class UpdateCarInput {
-
   @Field((type) => Int)
   @Max(9000)
   @Min(900)
@@ -18,3 +17,4 @@ export class UpdateCarInput {
   mileage: string;
 
 }
+NoArgsConstructor
