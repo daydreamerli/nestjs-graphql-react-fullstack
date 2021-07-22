@@ -18,16 +18,6 @@ export class CarsService {
       throw new InternalServerErrorException();
     });
   }
-  // findByPriceRange   create a input enum 0-60 60 -100 100 -200
-  // public async findByPrice(price:number) :Promise<Car[]>{
-    
-  //   while (price < enum.1) {
-    
-  //     return await this.carRepository.find({ dailyPrice <= 100});
-  //   }else {
-      
-  //   }
-  // }
 
   public async findByCategory(category:string) :Promise<Car[]>{
     
@@ -42,9 +32,9 @@ export class CarsService {
     
   }
 
-  public async findByID(id:string){
+  public async findByName(name:string){
     
-    return await this.carRepository.findOne({ id });
+    return await this.carRepository.findOne({ name });
     
   }
 
@@ -98,7 +88,6 @@ export class CarsService {
   }
 
   public async updateCarQuantity(name: string, orderQuantity: OrderQuantityInput): Promise<Car> {
-   
 
     let choosenCar = await this.carRepository.findOne({ name });
     console.log(choosenCar.quantity);
