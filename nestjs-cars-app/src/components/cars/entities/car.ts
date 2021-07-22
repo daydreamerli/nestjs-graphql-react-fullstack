@@ -22,7 +22,7 @@ export class Car {
 
   @Column()
   @Field()
-  quntity: number;
+  quantity: number;
 
   @Column()
   @Field()
