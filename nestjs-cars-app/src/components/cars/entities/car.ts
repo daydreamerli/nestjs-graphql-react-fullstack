@@ -4,6 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity({ name: 'cars' })
 @ObjectType()
 export class Car {
+  
   @PrimaryGeneratedColumn('uuid')
   @Field()
   id: string;
