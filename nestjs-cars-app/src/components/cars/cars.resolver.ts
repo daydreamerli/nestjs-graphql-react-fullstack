@@ -62,10 +62,10 @@ export class CarsResolver {
   }
 
   @Mutation((returns) => Car)
-  public async updateCar(@Args('id') id: string,
+  public async updateCar(@Args('name') name: string,
     @Args('updateData') updateData: UpdateCarInput,
   ): Promise<Car> {
-    return await this.carsService.updateCarInfo(id,updateData).catch((err) => {
+    return await this.carsService.updateCarInfo(name,updateData).catch((err) => {
       throw err;
     });
   }

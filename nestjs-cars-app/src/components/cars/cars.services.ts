@@ -64,16 +64,16 @@ export class CarsService {
   }
   
 
-  public async updateCarInfo(id: string, updateCarData: UpdateCarInput): Promise<Car> {
+  public async updateCarInfo(name: string, updateCarData: UpdateCarInput): Promise<Car> {
     
-    await this.carRepository.update(id,
+    await this.carRepository.update(name,
       {
         dailyPrice: updateCarData.dailyPrice,
         monthlyPrice: updateCarData.monthlyPrice,
         mileage:updateCarData.mileage
       });
     
-    const updatedCar = await this.carRepository.findOne({ id });
+    const updatedCar = await this.carRepository.findOne({ name });
 
     return updatedCar;
   }
