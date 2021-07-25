@@ -37,7 +37,7 @@ export class CarsService {
     
   }
 
-  public async checkAvaliable(name:string): Promise<string>{
+  public async checkAvailable(name:string): Promise<string>{
     
     const thisModelCar = await this.carRepository.findOne({ name });
     let avaliableNumber = thisModelCar.quantity;

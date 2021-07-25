@@ -40,7 +40,7 @@ export class CarsResolver {
 
   @Query((returns) => String)
   public async CheckAvailable(@Args('name') name: string) {
-    return await this.carsService.checkAvaliable(name).catch((err) => {
+    return await this.carsService.checkAvailable(name).catch((err) => {
       throw err;
     });
   }
