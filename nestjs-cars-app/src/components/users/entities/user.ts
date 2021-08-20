@@ -1,7 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsEmail, isUUID, Length, minLength } from 'class-validator';
-import { type } from 'os';
-import { Order } from 'src/components/orders/entities/order';
 import { Column, Entity, PrimaryGeneratedColumn ,OneToMany, BaseEntity} from 'typeorm';
 
 @Entity({ name: 'users' })
@@ -26,10 +24,6 @@ export class User extends BaseEntity{
   @Field()
   @Length(6,512)
   password: string;
-
-  @Field((type) => [Order],{nullable:true})
-  @OneToMany(() => Order,order => order.user,{onDelete: 'NO ACTION'})
-  orders: Order[]
   
   @Column({nullable:true})
   @Field()
