@@ -9,9 +9,7 @@ import { Int } from '@nestjs/graphql';
 
 @Injectable()
 export class UsersService {
-  findByEmail(email: string) {
-    throw new Error('Method not implemented.');
-  }
+ 
   constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
 
   public async getAllUsers(): Promise<User[]> {
