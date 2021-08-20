@@ -9,6 +9,9 @@ import { Int } from '@nestjs/graphql';
 
 @Injectable()
 export class UsersService {
+  findByEmail(email: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
 
   public async getAllUsers(): Promise<User[]> {
@@ -20,9 +23,18 @@ export class UsersService {
 
   public async findByUsername(username:string) :Promise<User>{
     
-    return await this.userRepository.findOne({ username });
-    
+    return await this.userRepository.findOne({ username }).catch((err) => {
+      throw new InternalServerErrorException();
+    });
   }
+
+  public async findUserByEmail(email:string) :Promise<User>{
+    
+    return await this.userRepository.findOne({ email }).catch((err) => {
+      throw new InternalServerErrorException();
+    });
+  }
+    
 
   public async addUser(newUserData: NewUserInput): Promise<User> {
 
@@ -41,7 +53,8 @@ export class UsersService {
     await this.userRepository.update(email,
       {
         username: updateUserData.username,
-        password:updateUserData.password
+        password: updateUserData.password,
+        thumbnailUrl:updateUserData.thumbnailUrl
       });
     
     const updatedUser = await this.userRepository.findOne({ email });
