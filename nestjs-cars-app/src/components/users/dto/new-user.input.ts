@@ -4,23 +4,19 @@ import { validate } from 'graphql';
 
 @InputType()
 export class NewUserInput {
-
   
   @Field()
   username: string;
 
-  
   @Field()
   @IsEmail()
   email: string;
- 
   
   @Field()
   @Length(6,512)
   password: string;
-  
-  
-  @Field()
+   
+  @Field({nullable:true})
   country: string;
 
   @Field({nullable:true})
