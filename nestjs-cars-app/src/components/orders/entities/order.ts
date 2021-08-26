@@ -16,9 +16,11 @@ export class Order {
   @Column()
   @Field()
   amount: number;
+  @CreateDateColumn()
+  createTime: Date;
 
   @CreateDateColumn()
-  createTime:Date
+  updateTime:Date
 
   @Column()
   @Field()
