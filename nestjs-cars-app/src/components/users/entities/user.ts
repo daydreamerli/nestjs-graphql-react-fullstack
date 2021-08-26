@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsEmail, isUUID, Length, minLength } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn ,OneToMany, BaseEntity} from 'typeorm';
+import { Order } from 'src/components/orders/entities/order';
+import { Column, Entity, PrimaryGeneratedColumn ,OneToMany, BaseEntity, JoinColumn} from 'typeorm';
 
 @Entity({ name: 'users' })
 @ObjectType()
@@ -32,6 +33,17 @@ export class User extends BaseEntity{
   @Column({ length: 512, nullable: true })
   @Field()
   thumbnailUrl: string;
+
+  @OneToMany(() => Order, order => order.owner, { cascade: true })
+  @JoinColumn()
+  orders: Order[]
+  
+  addOrder(order: Order) {
+    if (this.orders == null) {
+      this.orders = new Array<Order>();
+    }
+    this.orders.push(order)
+  }
   
   
 }
