@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, BaseEntity, OneToMany, ManyToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, RelationId, JoinColumn, BaseEntity, OneToMany, ManyToMany, CreateDateColumn } from 'typeorm';
 import { IsDate } from 'class-validator';
 import { Car } from 'src/components/cars/entities/car';
 import { User } from 'src/components/users/entities/user';
@@ -17,6 +17,8 @@ export class Order {
   @Field()
   amount: number;
 
+  @CreateDateColumn()
+  createTime:Date
 
   @Column()
   @Field()
@@ -24,7 +26,6 @@ export class Order {
 
   @Column()
   @Field()
-  @IsDate()
   endDate:string
   
   @Column()
