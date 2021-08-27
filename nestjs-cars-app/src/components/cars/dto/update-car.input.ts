@@ -14,7 +14,9 @@ export class UpdateCarInput {
   @Min(10, { message: "Daily price can't be that low!" })
   dailyPrice: number;
 
-  @Field()
+  @Field({nullable:true})
   mileage: string;
 
+  @Field({nullable:true})
+  thumbnailUrl: string;
 }
