@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from 'src/components/orders/entities/order';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'cars' })
 @ObjectType()
@@ -52,4 +53,8 @@ export class Car {
   @Column()
   @Field()
   thumbnailUrl: string;
+
+  @ManyToMany(() => Order, orders => orders.cars)
+  @JoinTable()
+  orders: Order[];
 }
