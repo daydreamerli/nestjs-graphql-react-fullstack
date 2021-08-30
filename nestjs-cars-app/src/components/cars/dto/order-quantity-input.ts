@@ -3,22 +3,10 @@ import { Max, Min } from 'class-validator';
 
 @InputType()
 export class OrderQuantityInput {
-  
-  @Field()
-  amount: number;
-
-  @Field()
-  ownerId: string
- 
-  @Field()
-  startDate: string
-
-
-  @Field()
-  endDate:string
-  
-
-  @Field()
-  duration: number;
+  @Field((type) => Int)
+  @Max(10, { message: "what you need more than 10 cars for?" })
+  @Min(1)
+  orderNumber: number;
 
 }
+
