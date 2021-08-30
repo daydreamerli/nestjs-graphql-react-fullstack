@@ -17,12 +17,19 @@ export class OrdersResolver {
   }
 
   @Query((returns) => [Order])
+  public async getCarOrders(@Args('carsId') carsId:string): Promise<Order[]> {
+    return await this.orderService.getCarOrders(carsId).catch((err) => {
+      throw err;
+    });
+  }
+  // to-do : add authentication / authorization  userlogin with JWT
+  @Query((returns) => [Order])
   public async getUserOrders(@Args('ownerId') ownerId:string): Promise<Order[]> {
     return await this.orderService.getUserOrders(ownerId).catch((err) => {
       throw err;
     });
   }
-
+  // to-do : add authentication / authorization  userlogin with JWT
   @Mutation((returns) => Order)
   public async addNewOrder(
     @Args('newOrderData') newOrderData: NewOrderInput,
@@ -31,7 +38,7 @@ export class OrdersResolver {
       throw err;
     });
   }
-
+  // to-do : add authentication / authorization  admin&userlogin with JWT
   @Mutation(() => Boolean)
   public async deleteAllOrders(){
      await this.orderService.deleteAllOrders().catch((err) => {

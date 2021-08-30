@@ -42,7 +42,16 @@ export class Order {
   owner: User;
 
   @ManyToMany(() => Car, cars => cars.orders)
-  cars:Car[]
+  cars: Car[]
+  
+  //to-do: make this fuctional with neworder.input
+  addCars(cars: Car) {
+    if (this.cars == null) {
+      this.cars = new Array<Car>();
+    }
+    this.cars.push(cars)
+  }
+
   
   // to-do: need to save the new order while saving the related carId to middleware table
   @Column()
