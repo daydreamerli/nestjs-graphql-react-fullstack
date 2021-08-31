@@ -3,8 +3,7 @@ import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { slide as Menu } from "react-burger-menu";
 import { useMediaQuery } from "react-responsive";
-import { SCREENS } from "../responsive";
-import menuStyles from "./menuStyles";
+
 
 const ListContainer = styled.ul`
   ${tw`
