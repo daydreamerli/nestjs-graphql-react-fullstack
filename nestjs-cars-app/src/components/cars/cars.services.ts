@@ -1,12 +1,13 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { truncate } from 'fs';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { NewCarInput } from './dto/new-car.input';
 import { UpdateCarInput } from './dto/update-car.input';
 import { Car } from './entities/car';
 import { OrderQuantityInput } from './dto/order-quantity-input';
 import { Int } from '@nestjs/graphql';
+import { Order } from '../orders/entities/order';
 
 @Injectable()
 export class CarsService {
@@ -18,6 +19,18 @@ export class CarsService {
       throw new InternalServerErrorException();
     });
   }
+
+  public async findOrderCars(id: string): Promise<Car[]>{
+    
+    // Error : connect "default " was not found  ---> problem at the ormconfig-> database.module
+    return await getConnection()
+      .createQueryBuilder()
+      .relation(Order, "cars")
+      .of(id)
+      .loadMany().catch((err) => {
+        throw new InternalServerErrorException();
+      });
+    }
 
   public async findByCategory(category:string) :Promise<Car[]>{
     
