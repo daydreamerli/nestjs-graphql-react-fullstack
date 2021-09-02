@@ -56,6 +56,6 @@ export class Order {
   // to-do: need to save the new order while saving the related carId to middleware table
   @Column()
   @Field()
-  orderCars: string;
+  orderedCars: string;
 
 }
