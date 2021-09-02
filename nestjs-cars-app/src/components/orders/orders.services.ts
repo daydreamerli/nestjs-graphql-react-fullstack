@@ -12,7 +12,8 @@ export class OrdersService {
   constructor(
     @InjectRepository(Order)
     private orderRepository: Repository<Order>) {}
-
+  
+  //only open for car management admin user
   public async getAllOrders(): Promise<Order[]> {
     
     return await this.orderRepository.find({}).catch((err) => {
@@ -29,7 +30,7 @@ export class OrdersService {
       throw new InternalServerErrorException();
     });
   }
-
+  
   public async getUserOrders(ownerId: string): Promise<Order[]> {
 
     // need add where sql to identify which owner is this order belong to

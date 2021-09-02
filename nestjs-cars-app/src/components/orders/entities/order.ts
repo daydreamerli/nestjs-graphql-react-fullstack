@@ -16,6 +16,7 @@ export class Order {
   @Column()
   @Field()
   amount: number;
+
   @CreateDateColumn()
   createTime: Date;
 
@@ -43,7 +44,7 @@ export class Order {
 
   @ManyToMany(() => Car, cars => cars.orders)
   cars: Car[]
-  
+
   //to-do: make this fuctional with neworder.input
   addCars(cars: Car) {
     if (this.cars == null) {
