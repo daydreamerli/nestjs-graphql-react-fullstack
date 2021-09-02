@@ -67,7 +67,7 @@ type Order {
   duration: Float!
   endDate: String!
   id: String!
-  orderCars: String!
+  orderedCars: String!
   startDate: String!
 }
 
@@ -81,6 +81,7 @@ type Query {
   findByDrivetrain(driveTrain: String!): [Car!]!
   findByName(name: String!): Car!
   findByUsername(username: String!): User!
+  findOrderCars(ordersId: String!): [Car!]!
   findUserByEmail(email: String!): User!
   getAllCars: [Car!]!
   getAllOrders: [Order!]!
