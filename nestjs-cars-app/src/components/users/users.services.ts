@@ -51,7 +51,7 @@ export class UsersService {
     await this.userRepository.update(email,
       {
         username: updateUserData.username,
-        password: updateUserData.password,
+        country: updateUserData.country,
         thumbnailUrl:updateUserData.thumbnailUrl
       });
     

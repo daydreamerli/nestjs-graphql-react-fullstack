@@ -98,7 +98,7 @@ input UpdateCarInput {
 }
 
 input UpdateUserInput {
-  password: String!
+  country: String
   thumbnailUrl: String
   username: String!
 }

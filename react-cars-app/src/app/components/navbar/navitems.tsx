@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { slide as Menu } from "react-burger-menu";
 import { useMediaQuery } from "react-responsive";
-
+import { SCREENS } from "../responsive";
+import menuStyles from "./menuStyles";
 
 const ListContainer = styled.ul`
   ${tw`
@@ -58,9 +59,6 @@ export function NavItems() {
           <NavItem menu>
             <a href="#">Contact Us</a>
           </NavItem>
-          <NavItem menu>
-            <a href="#">Login</a>
-          </NavItem>
         </ListContainer>
       </Menu>
     );
@@ -78,9 +76,6 @@ export function NavItems() {
       </NavItem>
       <NavItem>
         <a href="#">Contact Us</a>
-      </NavItem>
-      <NavItem>
-        <a href="#">Login</a>
       </NavItem>
     </ListContainer>
   );
