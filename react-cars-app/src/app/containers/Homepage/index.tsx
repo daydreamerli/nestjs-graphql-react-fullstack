@@ -26,14 +26,14 @@ export function HomePage() {
     <PageContainer>
       <Navbar />
       <TopSection />
-      <Marginer direction="vertical" margin="4em" />
+      <Marginer direction="vertical" margin="2em" />
       <BookCard />
       <Marginer direction="vertical" margin="10em" />
       <BookingSteps />
-      <Marginer direction="vertical" margin="8em" />
-      <AboutUs />
-      <Marginer direction="vertical" margin="8em" />
+      <Marginer direction="vertical" margin="1em" />
       <TopCars />
+      <AboutUs />
+      <Marginer direction="vertical" margin="2em" />
       <Footer />
     </PageContainer>
   );

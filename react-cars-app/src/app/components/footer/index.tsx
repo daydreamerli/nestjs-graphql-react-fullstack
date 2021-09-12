@@ -158,8 +158,8 @@ export function Footer() {
         <AboutContainer>
           <Logo color="white" bgColor="dark" />
           <AboutText>
-            Yourcar is a Car renting and selling company located in many
-            countries across the world which has high quality cars and top rated
+            GreatMotors is a Car renting and selling company located in two
+            sites at Auckland City,New Zealand, we have high quality cars and top rated
             service.
           </AboutText>
         </AboutContainer>
@@ -209,7 +209,7 @@ export function Footer() {
             <RedIcon>
               <FontAwesomeIcon icon={faPhoneAlt} />
             </RedIcon>
-            <SmallText>+91 555-234-8469</SmallText>
+            <SmallText>+64 09-818-8881</SmallText>
           </HorizontalContainer>
         </SectionContainer>
         <SectionContainer>
@@ -218,13 +218,13 @@ export function Footer() {
             <RedIcon>
               <FontAwesomeIcon icon={faEnvelope} />
             </RedIcon>
-            <SmallText>info@yourcar.com</SmallText>
+            <SmallText>info@greatmotors.co.nz</SmallText>
           </HorizontalContainer>
         </SectionContainer>
       </InnerContainer>
       <BottomContainer>
         <CopyrightText>
-          Copyright &copy; {new Date().getFullYear()} Yourcar. All rights
+          Copyright &copy; {new Date().getFullYear()} GreatMotors. All rights
           reserved.
         </CopyrightText>
       </BottomContainer>
