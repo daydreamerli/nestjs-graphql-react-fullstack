@@ -110,10 +110,6 @@ export function TopCars() {
   const testCar: ICar = {
     name: "Audi S3 Car",
     mileage: "10k",
-    category: "Sedan",
-    year: "2-4year",
-    quantity: 10,
-    driveTrain:"4x4",
     thumbnailSrc:
       "https://cdn.jdpower.com/Models/640x480/2017-Audi-S3-PremiumPlus.jpg",
     dailyPrice: 70,
@@ -125,10 +121,6 @@ export function TopCars() {
   const testCar2: ICar = {
     name: "HONDA cITY 5 Seater Car",
     mileage: "20k",
-    category: "Sedan",
-    year: "2-4year",
-    quantity: 10,
-    driveTrain:"frontwheel",
     thumbnailSrc:
       "https://shinewiki.com/wp-content/uploads/2019/11/honda-city.jpg",
     dailyPrice: 50,
@@ -145,7 +137,7 @@ export function TopCars() {
 
   const cars =
     (!isEmptyTopCars &&
-      topCars.map((car) => <Car category={""} year={""} quantity={0} driveTrain={""} {...car} thumbnailSrc={car.thumbnailUrl} />)) ||
+      topCars.map((car) => <Car  {...car} thumbnailSrc={car.thumbnailUrl} />)) ||
     [];
 
   const numberOfDots = isMobile ? cars.length : Math.ceil(cars.length / 3);

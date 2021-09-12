@@ -8,6 +8,6 @@ async function bootstrap() {
 
   app.enableCors();
 
-  await app.listen(process.env.PORT || 8080);
+  await app.listen(process.env.PORT || 9000);
 }
 bootstrap();

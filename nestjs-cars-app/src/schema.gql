@@ -77,13 +77,13 @@ input OrderQuantityInput {
 
 type Query {
   CheckAvailable(name: String!): String!
+  cars: [Car!]!
   findByCategory(category: String!): [Car!]!
   findByDrivetrain(driveTrain: String!): [Car!]!
   findByName(name: String!): Car!
   findByUsername(username: String!): User!
   findOrderCars(ordersId: String!): [Car!]!
   findUserByEmail(email: String!): User!
-  getAllCars: [Car!]!
   getAllOrders: [Order!]!
   getAllUsers: [User!]!
   getCarOrders(carsId: String!): [Order!]!
