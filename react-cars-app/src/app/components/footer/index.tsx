@@ -31,18 +31,19 @@ const InnerContainer = styled.div`
 
 const BottomContainer = styled.div`
   ${tw`
-    w-full
-    flex
-    max-w-screen-2xl
-    justify-center
-    md:justify-start
-    mt-7
-    md:mt-1
+  w-full
+  flex
+  max-w-screen-2xl
+  justify-center
+  md:justify-start
+  mt-7
+  ml-3
+  mb-3
   `};
 `;
 
 const CopyrightText = styled.small`
-  font-size: 12px;
+  font-size: 14px;
   ${tw`
     text-gray-300
   `}
