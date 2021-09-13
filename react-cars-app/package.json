@@ -61,11 +61,16 @@
     ]
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
     "@types/react-calendar": "^3.1.6",
     "@types/redux-logger": "^3.0.8",
     "@types/styled-components": "^5.1.9",
+    "apollo": "^2.33.6",
     "autoprefixer": "^9",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "resolutions": {
+    "graphql": "^15.5.2"
   }
 }
