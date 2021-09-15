@@ -1,8 +1,8 @@
 # Full Web App with Nodejs NestJS framwork GraphQL MySQL  React &&Tailwind
 
-   Frontend : React ApolloClient@GraphQL & Tailwind CSS
+   Frontend : React with Redux | ApolloClient@GraphQL & Tailwind CSS
    
-   Backend: Nodejs=> NestJs framwork with GranphQL and MySQL database
+   Backend: Nodejs=> NestJs framwork with GranphQL and TypeORM => MySQL Database
 
 ## About the project
 
@@ -10,6 +10,5 @@
    
    The project is support by industry partner greatmotors NZ.
    
-   The aiming of this project is to learn and utilize the new technology stacks used in the IT industry and practice
-   
-   the software development methodology and the project management in real-life case. 
+   The aiming of this project is to learn and utilize the new technology stacks used in the IT industry and practice the software development methodology as well as the project management in real-life case. 
+  
