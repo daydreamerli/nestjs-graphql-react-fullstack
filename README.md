@@ -1,4 +1,4 @@
-# Full Web App with Nodejs NestJS framwork GraphQL MySQL  React &&Tailwind
+# Full Web App with Nodejs NestJS framwork TypeORM MySQL  Apollo/GraphQL React Redux &&Tailwind
 
    Frontend : React with Redux | ApolloClient@GraphQL & Tailwind CSS
    
