@@ -5,8 +5,12 @@ export const GET_ALL_CARS = gql`
     cars {
       id
       name
+      category
+      quantity
+      year
       mileage
       gearType
+      driveTrain
       gas
       thumbnailUrl
       dailyPrice
