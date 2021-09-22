@@ -107,37 +107,16 @@ export function TopCars() {
     setLoading(false);
   };
 
-  const testCar: ICar = {
-    name: "Audi S3 Car",
-    mileage: "10k",
-    thumbnailSrc:
-      "https://cdn.jdpower.com/Models/640x480/2017-Audi-S3-PremiumPlus.jpg",
-    dailyPrice: 70,
-    monthlyPrice: 1600,
-    gearType: "Auto",
-    gas: "Petrol",
-  };
-
-  const testCar2: ICar = {
-    name: "HONDA cITY 5 Seater Car",
-    mileage: "20k",
-    thumbnailSrc:
-      "https://shinewiki.com/wp-content/uploads/2019/11/honda-city.jpg",
-    dailyPrice: 50,
-    monthlyPrice: 1500,
-    gearType: "Auto",
-    gas: "Petrol",
-  };
-
   useEffect(() => {
     fetchTopCars();
   }, []);
 
   const isEmptyTopCars = !topCars || topCars.length === 0;
+  
 
   const cars =
     (!isEmptyTopCars &&
-      topCars.map((car) => <Car  {...car} thumbnailSrc={car.thumbnailUrl} />)) ||
+      topCars.map((car) => <Car year={""} quantity={0} driveTrain={""} {...car} thumbnailSrc={car.thumbnailUrl} />)) ||
     [];
 
   const numberOfDots = isMobile ? cars.length : Math.ceil(cars.length / 4);
@@ -189,7 +168,7 @@ export function TopCars() {
               },
             }}
           />
-          <Dots value={current} onChange={setCurrent} number={numberOfDots} />
+          <Dots value={current} onChange={setCurrent} number={numberOfDots}  />
         </CarsContainer>
       )}
     </TopCarsContainer>
