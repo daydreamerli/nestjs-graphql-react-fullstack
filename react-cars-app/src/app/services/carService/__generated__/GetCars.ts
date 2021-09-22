@@ -11,6 +11,7 @@ export interface GetCars_cars {
   __typename: "Car";
   id: string;
   name: string;
+  category: string;
   mileage: string;
   gearType: string;
   gas: string;
