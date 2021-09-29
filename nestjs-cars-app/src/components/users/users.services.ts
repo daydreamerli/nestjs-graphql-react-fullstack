@@ -1,18 +1,19 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { truncate } from 'fs';
 import { Repository } from 'typeorm';
 import { NewUserInput } from './dto/new-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user';
-import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { GraphQLError } from 'graphql';
+import { access_token, AuthService } from '../auth/auth.service';
+
 
 @Injectable()
 export class UsersService {
 
-  constructor(private jwtService: JwtService,
+  constructor(@Inject(forwardRef(() => AuthService))
+      private authService: AuthService,
     @InjectRepository(User) private userRepository: Repository<User>) { }
   
 
@@ -37,15 +38,23 @@ export class UsersService {
     });
   }
 
-  public async login(email:string,password:string):Promise<any> {
-    try {
-      const user = await this.userRepository.findOne({ email });
-      return user && (await bcrypt.compare(password, user.password))
-        ? await this.jwtService.signAsync({ email, id: user.id })
-        : new GraphQLError('Sorry, wrong password/email');
-    } catch (err) {
-      console.error(err);
+  public async login(email: string, password: string): Promise< access_token> {
+    
+    const IsvalidUser = await this.authService.validate(email, password);
+
+    if (!IsvalidUser) {
+      return null;
+    } else {
+      return await this.authService.login(IsvalidUser);
     }
+    // try {
+    //   const user = await this.userRepository.findOne({ email });
+    //   return user && (await bcrypt.compare(password, user.password))
+    //     ? await this.jwtService.signAsync({ email, id: user.id })
+    //     : new GraphQLError('Sorry, wrong password/email');
+    // } catch (err) {
+    //   console.error(err);
+    // }
   }
 
   public async createUser(newUserData: NewUserInput): Promise<User> {
