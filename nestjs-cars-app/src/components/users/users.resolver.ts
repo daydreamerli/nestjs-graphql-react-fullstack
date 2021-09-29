@@ -6,7 +6,8 @@ import { User } from './entities/user';
 import { CurrentUser } from './user.decorator';
 import { SimpleConsoleLogger } from 'typeorm';
 import { HttpException, HttpStatus, NotFoundException, UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from './auth.guard';
+import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
+import { access_token } from '../auth/auth.service';
 
 
 @Resolver()
@@ -21,6 +22,7 @@ export class UsersResolver {
   }
 
   @Query((returns) => User)
+  @UseGuards(GqlAuthGuard)
   public async finduserById(@Args('id') id: string): Promise<User> {
     return await this.userService.getUserById(id).catch((err) => {
       throw err;
@@ -28,13 +30,14 @@ export class UsersResolver {
   }
 
   @Query((returns) => User)
+  @UseGuards(GqlAuthGuard)  
   public async finduserByEmail(@Args('email') email: string): Promise<User> {
     return await this.userService.findByUserEmail(email).catch((err) => {
       throw err;
     });
   }
   // use mutation create jwt for user login request
-  @Mutation((returns) => String)
+  @Mutation((returns) => access_token)
   public  async login(
     @Args('email') email: string,
     @Args('password') password: string,
