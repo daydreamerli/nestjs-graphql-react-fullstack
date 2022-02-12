@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Car {
+  category: String!
+  dailyPrice: Float!
+  driveTrain: String!
+  gas: String!
+  gearType: String!
+  id: String!
+  mileage: String!
+  monthlyPrice: Float!
+  name: String!
+  quantity: Float!
+  thumbnailUrl: String!
+  year: String!
+}
+
+type LoginResponse {
+  access_token: String!
+}
+
+type Mutation {
+  UpdateUserPass(currPass: String!, newPass: String!): User!
+  addNewCar(newCarData: NewCarInput!): Car!
+  addNewOrder(carsId: String!, newOrderData: NewOrderInput!): Order!
+  addNewUser(newUserData: NewUserInput!): User!
+  deleteAllOrders: Boolean!
+  deleteAllUsers: Boolean!
+  deleteOne(id: String!): Boolean!
+  deleteUser: Boolean!
+  login(email: String!, password: String!): LoginResponse!
+  updateCar(name: String!, updateData: UpdateCarInput!): Car!
+  updateQuantity(name: String!, orderQuantity: OrderQuantityInput!): Car!
+  updateUserInfo(updateData: UpdateUserInput!): User!
+}
+
+input NewCarInput {
+  category: String!
+  dailyPrice: Int!
+  driveTrain: String!
+  gas: String!
+  gearType: String!
+  mileage: String!
+  monthlyPrice: Int!
+  name: String!
+  quantity: Int!
+  thumbnailUrl: String!
+  year: String!
+}
+
+input NewOrderInput {
+  amount: Int!
+  duration: Int!
+  endDate: String!
+  orderedCars: String!
+  ownerId: String!
+  startDate: String!
+}
+
+input NewUserInput {
+  country: String
+  email: String!
+  password: String!
+  thumbnailUrl: String
+  username: String!
+}
+
+type Order {
+  amount: Float!
+  duration: Float!
+  endDate: String!
+  id: String!
+  orderedCars: String!
+  startDate: String!
+}
+
+input OrderQuantityInput {
+  orderNumber: Int!
+}
+
+type Query {
+  CheckAvailable(name: String!): String!
+  CurrentUser: User!
+  cars: [Car!]!
+  findByCategory(category: String!): [Car!]!
+  findByDrivetrain(driveTrain: String!): [Car!]!
+  findByName(name: String!): Car!
+  findOrderCars(ordersId: String!): [Car!]!
+  finduserByEmail(email: String!): User!
+  finduserById(id: String!): User!
+  getAllOrders: [Order!]!
+  getAllUsers: [User!]!
+  getCarOrders(carsId: String!): [Order!]!
+  getUserOrders(ownerId: String!): [Order!]!
+}
+
+input UpdateCarInput {
+  dailyPrice: Int!
+  mileage: String
+  monthlyPrice: Int!
+  thumbnailUrl: String
+}
+
+input UpdateUserInput {
+  country: String
+  thumbnailUrl: String
+  username: String!
+}
+
+type User {
+  country: String!
+  email: String!
+  id: String!
+  password: String!
+  thumbnailUrl: String!
+  username: String!
+}

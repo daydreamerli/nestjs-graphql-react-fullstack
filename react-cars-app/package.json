@@ -1,0 +1,92 @@
+{
+  "name": "react-cars-app",
+  "version": "0.1.0",
+  "description": "Industry project react-redux-tailwindcss frontend app",
+  "author": "frankli",
+  "proxy": "http://localhost:3000",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/client": "^3.3.19",
+    "@apollo/react-hooks": "^4.0.0",
+    "@brainhubeu/react-carousel": "^2.0.3",
+    "@craco/craco": "^6.1.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.12.3",
+    "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-cookies": "^0.1.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-responsive": "^8.0.2",
+    "axios": "^0.21.4",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^17.0.2",
+    "react-burger-menu": "^3.0.6",
+    "react-calendar": "^3.4.0",
+    "react-cookie": "^4.1.1",
+    "react-cookies": "^0.1.1",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.15.4",
+    "react-redux": "^7.2.0",
+    "react-responsive": "^8.2.0",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-select-country-list": "^2.2.3",
+    "react-spinners": "^0.11.0",
+    "redux-logger": "^3.0.6",
+    "reselect": "^4.0.0",
+    "styled-components": "^5.3.0",
+    "twin.macro": "^2.4.1",
+    "typescript": "~4.1.5"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen --config ./codegen.yml",
+    "schema:download": "npx apollo service:download --endpoint=http://localhost:9000/graphql ./src/app/graphql.schema.json",
+    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/app/graphql.schema.json --target=typescript --tagName=gql --watch",
+    "start:prod": "node ./server.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.2.0",
+    "@graphql-codegen/typescript": "^2.2.2",
+    "@graphql-codegen/typescript-operations": "^2.1.4",
+    "@graphql-codegen/typescript-react-apollo": "^3.1.4",
+    "@types/graphql": "^14.5.0",
+    "@types/react-calendar": "^3.1.6",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/redux-logger": "^3.0.8",
+    "@types/styled-components": "^5.1.9",
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  }
+}
