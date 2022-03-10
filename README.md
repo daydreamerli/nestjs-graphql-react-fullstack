@@ -2,14 +2,54 @@
 
    Frontend : React ApolloClient@GraphQL & Tailwind CSS
    
-   Backend: Nodejs=> NestJs framwork with GranphQL and MySQL database
+    #using: npx create-react-app my-app --template tailwindcss-typescript
+    
+    #tailwind init 
+    
+    # good sample tailwind config:
+    
+    module.exports = {
+      purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+      darkMode: false, // or 'media' or 'class'
+      theme: {
+      extend: {},
+      screens: {
+         sm: "640px",
+         // => @media (min-width: 640px) { ... }
 
-## About the project
+         md: "768px",
+         // => @media (min-width: 768px) { ... }
 
-   This is a industry project for OPAIC studio5/6.
+         lg: "1024px",
+         // => @media (min-width: 1024px) { ... }
+
+         xl: "1280px",
+         // => @media (min-width: 1280px) { ... }
+
+         "2xl": "1536px",
+         // => @media (min-width: 1536px) { ... }
+         },
+      },
+      variants: {
+         extend: {},
+      },
+      plugins: [],
+    };
+    
+    # Using Graphql codegen to autogenerate code :
+    
+    "schema:download": "npx apollo service:download --endpoint=http://localhost:9000/graphql ./src/app/graphql.schema.json",
+    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/app/graphql.schema.json --target=typescript --tagName=gql --watch",
+    
+    # bad choice :  Redux with apolloClient should use apolloclient only for handling the data state and pipe line
    
-   The project is support by industry partner greatmotors NZ.
+   Backend: Nodejs=> NestJs framwork with GranphQL and TypeORM, MySQL database
    
-   The aiming of this project is to learn and utilize the new technology stacks used in the IT industry and practice
+    # why nestjs --> easy to use, and powerful
+    
+    # typeORM is strongly recommended rather than othe ORM
+    
+    
+
    
-   the software development methodology and the project management in real-life case. 
+   
