@@ -20,7 +20,7 @@
     "host": "mysqldb",
     "port": 3306,
     "username": "root",
-    "password": "nestjs2021",
+    "password": "******",
     "database": "greatcars",
     "entities": ["dist/**/entities/*{.ts,.js}"],
     "synchronize": true,
